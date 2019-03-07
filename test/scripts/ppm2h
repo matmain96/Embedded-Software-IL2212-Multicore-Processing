@@ -1,0 +1,37 @@
+#!/bin/bash
+
+INPUT="$@"
+OUTPUT="images.h"
+PPMS=$(ls $INPUT/*.ppm | sort)
+NAME=$(echo $(basename $INPUT) | sed 's|-|_|g')
+NFILES=$(echo $PPMS | wc -w)
+
+echo "/*" > $OUTPUT
+echo " * This file holds the reference images:" >> $OUTPUT
+for i in $(seq 1 $NFILES); do 
+    echo " * - ${NAME}_$i" >> $OUTPUT
+done
+echo " *" >> $OUTPUT
+echo " * The following test array of images along with a variable showing" >> $OUTPUT
+echo " * its lenghth are exported: " >> $OUTPUT
+echo " * - image_sequence" >> $OUTPUT
+echo " * - sequence_length" >> $OUTPUT
+echo " */" >> $OUTPUT
+echo "" >> $OUTPUT
+
+counter=1
+varlist=""
+for ppm in $PPMS; do
+    varname="${NAME}_$counter"
+    pixels=""
+    while read -r line; do
+	[[ "$line" =~ ^#.*$ ]] || [[ "$line" =~ ^P3.*$ ]] && continue
+	pixels="${pixels},${line// /,}"
+    done < "$ppm"
+    echo "unsigned char $varname[] = {${pixels:1}};" >> $OUTPUT
+    varlist="${varlist}, $varname"
+    counter=$[$counter +1]
+done
+
+echo "char sequence_length = $NFILES;" >> $OUTPUT
+echo "unsigned char* image_sequence[$NFILES] = {${varlist:2}};" >> $OUTPUT

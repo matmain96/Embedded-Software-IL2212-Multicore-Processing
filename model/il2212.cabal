@@ -1,0 +1,48 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: f5cfdf1d0050db92cfa3b93d7d31e5db39b3dfb0b62e5ae66eb03cc3e8deec12
+
+name:           il2212
+version:        0.2.0.0
+synopsis:       image processing application for IL2212 lab project
+description:    This is a ForSyDe-Haskell project meant to serve as specification model for the image processing application used in the IL2212 Embedded Software lab. Visit the links below for detailed documentation for each module.
+author:         George Ungureanu
+maintainer:     ugeorge@kth.se
+license:        MIT
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+library
+  exposed-modules:
+      Tracker
+      Utilities
+  other-modules:
+      Paths_il2212
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.6 && <6
+    , directory >=1.2.5.0
+    , forsyde-shallow >=3.3.4
+  default-language: Haskell2010
+
+executable il2212-track
+  main-is: Main.hs
+  other-modules:
+      Paths_il2212
+  hs-source-dirs:
+      app
+  ghc-options: -O2 -threaded -rtsopts -eventlog -with-rtsopts=-N
+  build-depends:
+      base >=4.6 && <6
+    , directory >=1.2.5.0
+    , forsyde-shallow >=3.3.4
+    , il2212
+  default-language: Haskell2010

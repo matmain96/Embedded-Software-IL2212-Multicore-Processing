@@ -1,0 +1,8 @@
+#!/bin/bash
+
+INPUT="$@"
+OUTPUT="$(echo $(basename $INPUT) | sed 's|-|_|g').gif"
+PPMS=$(ls $INPUT/*.ppm | sort)
+
+convert -delay 20 $PPMS $OUTPUT
+

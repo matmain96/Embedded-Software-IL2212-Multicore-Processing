@@ -1,0 +1,33 @@
+name:                il2212
+version:             0.2.0.0
+synopsis:            image processing application for IL2212 lab project
+description:         This is a ForSyDe-Haskell project meant to serve as specification model for the image processing application used in the IL2212 Embedded Software lab. Visit the links below for detailed documentation for each module.
+license:             MIT
+license-file:        LICENSE
+author:              George Ungureanu
+maintainer:          ugeorge@kth.se
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+dependencies:
+- base >=4.6 && <6
+- forsyde-shallow >= 3.3.4
+- directory >= 1.2.5.0
+library:
+  source-dirs: src
+
+executables:
+  il2212-track:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -O2
+    - -threaded
+    - -rtsopts
+    - -eventlog 
+    - -with-rtsopts=-N
+    dependencies:
+    - il2212
+ 
