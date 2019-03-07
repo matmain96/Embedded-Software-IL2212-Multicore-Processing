@@ -10,7 +10,7 @@ This repository is organized as follows:
  * `bsp` is an empty folder which might contain the generated Board Support Packages for different configurations in case you are using our build scripts.
  * `hardware` contains files describing the pre-built hardware cores. It is also a convenient place to host your hardware platform project folder(s).
 
-##Objectives
+## Objectives
 The task of this project is to implement a concurrent data-flow application in different ways on a multiprocessor that is implemented on an FPGA. Students shall apply their knowledge from the lectures in order to derive an efficient implementation exploiting the parallelism provided by the architecture.
 
 During this project students shall:
