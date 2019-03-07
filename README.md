@@ -23,3 +23,10 @@ During this project students shall:
 * on a single core without operating system;
 * on the multiprocessor without operating system while satisfying design constraints on worst case throughput and memory footprint;
 document the results of the project in a well-written report which will be assessed and used as support during lab examination.
+
+## Application Specification
+Your task for this lab project is to implement an image tracking algorithm which tracks a (given) moving "circle" pattern in a series of image frames for the purpose of further processing. You are supposed to implement this application on a (given) custom multi-processor hardware platform hosted on a DE2 FPGA, in three ways:
+
+* on a single core, using the MicroC/OS-II
+* on a single core, without OS
+* on multiple cores, without OS
